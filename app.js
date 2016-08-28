@@ -1,12 +1,12 @@
 var http = require('http');
 var https = require('https');
-var murl = require('')
+//var murl = require('')
 
 
 var server = http.createServer(function(req, res){
 	
 	
-	console.log(req.url.)
+	//console.log(req.url.)
 	
 	
 	https.get({

@@ -1,10 +1,12 @@
 var http = require('http');
 var https = require('https');
+var murl = require('')
 
 
 var server = http.createServer(function(req, res){
 	
 	
+	console.log(req.url.)
 	
 	
 	https.get({
@@ -38,5 +40,5 @@ var server = http.createServer(function(req, res){
 	
 	
 });
-
-server.listen(8000);
+var port = process.env.PORT || 5000;
+server.listen(port);

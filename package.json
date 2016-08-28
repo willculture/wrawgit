@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/willculture/wrawgit/issues"
   },
-  "homepage": "https://github.com/willculture/wrawgit#readme"
+  "homepage": "https://github.com/willculture/wrawgit#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0"
+  }
 }

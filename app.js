@@ -1,6 +1,7 @@
 var http = require('http');
 var https = require('https');
 var murl = require('url');
+var fs = require('fs');
 var cheerio = require('cheerio'); //这个模块是用来讲Html字符串转换为DOM对象， 模仿了jQuery
 
 var token = undefined; //这里确定好一个token
@@ -73,6 +74,10 @@ var server = http.createServer(function(req, res) {
  
 	if (path.indexOf('master') > -1) {
 		getToken(path, res, doRawgit);
+	} else if(path.indexOf('index.html') > -1){
+		fs.readFile('src/index.html', function(err, data) {
+			res.end(data);
+		});	
 	} else {
 		doRawgit(path, res);
 	}

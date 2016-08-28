@@ -1,25 +1,11 @@
-<<<<<<< HEAD
-
-
 # wrawgit
+实时获取github的静态数据, 类似rawgit - https://rawgit.com/
+wrawgit是实时得代码， 没有缓冲时间！ 方便开发使用
+演示地址： https://wrawgit.herokuapp.com/
 
+# 使用方式
+在github中找到相关得项目代码， 点击raw, 则会出现类似这种格式
+https://raw.githubusercontent.com/willculture/tCss/master/layout.html
 
-
-## Usage
-
-
-
-## Developing
-
-
-
-### Tools
-
-Created with [Nodeclipse](https://github.com/Nodeclipse/nodeclipse-1)
- ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))   
-
-Nodeclipse is free open-source project that grows with your contributions.
-=======
-# wrawgit
-实时获取github的静态数据
->>>>>>> 48ae128ad0d1fe51f2416b057ca72858c7c8ec9c
+将域名替换成https://wrawgit.herokuapp.com/ 就OK了，简单快速。最终链接
+https://wrawgit.herokuapp.com/willculture/tCss/master/layout.html

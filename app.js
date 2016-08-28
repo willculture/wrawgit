@@ -1,11 +1,11 @@
 var http = require('http');
 var https = require('https');
-var murl = require('URL');
+var murl = require('url');
 
 
 var server = http.createServer(function(req, res){
 	
-	var urlp = murl.parese(req.url);
+	var urlp = murl.parse(req.url);
 	var path = urlp.pathname;
 	var sc = urlp.search;
 	//console.log(req.url)
@@ -23,7 +23,7 @@ var server = http.createServer(function(req, res){
 		var content = "";
 	    sres.on("data", function(data) { 
 	    	 res.write(data);
-	    	 console.log(data)
+	    	 //console.log(data)
 	    });
 	    
 	    sres.on("end", function() { 

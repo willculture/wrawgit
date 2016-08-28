@@ -74,7 +74,7 @@ var server = http.createServer(function(req, res) {
  
 	if (path.indexOf('master') > -1) {
 		getToken(path, res, doRawgit);
-	} else if(path.indexOf("/") || path.indexOf('index.html') > -1){
+	} else if(path.indexOf("/") > -1 || path.indexOf('index.html') > -1){
 		fs.readFile('src/index.html', function(err, data) {
 			res.end(data);
 		});	

@@ -1,18 +1,20 @@
 var http = require('http');
 var https = require('https');
-//var murl = require('')
+var murl = require('URL');
 
 
 var server = http.createServer(function(req, res){
 	
-	
-	//console.log(req.url.)
+	var urlp = murl.parese(req.url);
+	var path = urlp.pathname;
+	var sc = urlp.search;
+	//console.log(req.url)
 	
 	
 	https.get({
 		hostname: 'raw.githubusercontent.com',
 		//hostname: 'www.ip138.com', 
-		path: "/willculture/tCss/master/assets/css/style.css"
+		path: path
 		//path: "/"
 	}, function (sres) {
 		

@@ -48,6 +48,12 @@ function doRawgit(path, res) {
 		path : path.replace('master', token)
 	}, function(sres) {
 
+		if (path.indexOf(".css") > -1) {
+			res.setHeader("Content-Type", "text/css");
+		} else if (path.indexOf(".js") > -1) {
+			res.setHeader("Content-Type", "text/javascript");
+		}  
+		
 		res.statusCode = 200;
 		var content = "";
 		sres.on("data", function(data) {

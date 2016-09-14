@@ -42,6 +42,7 @@ function getToken(path, res, callback) {
  * @param res {response} 响应对象
  */
 function doRawgit(path, res) {
+	console.log(path)
 	// 
 	https.get({
 		hostname : 'raw.githubusercontent.com',
@@ -51,8 +52,10 @@ function doRawgit(path, res) {
 		if (path.indexOf(".css") > -1) {
 			res.setHeader("Content-Type", "text/css");
 		} else if (path.indexOf(".js") > -1) {
-			res.setHeader("Content-Type", "text/javascript");
-		}  
+			res.setHeader("Content-Type", "application/javascript");
+		} else if (path.indexOf(".html") > -1 || path.indexOf(".htm") > -1) {
+			res.setHeader("Content-Type", "text/html");
+		} 
 		
 		res.statusCode = 200;
 		var content = "";
@@ -77,10 +80,10 @@ var server = http.createServer(function(req, res) {
 	var urlp = murl.parse(req.url);
 	var path = urlp.pathname;
 	var sc = urlp.search;
- 
+      
 	if (path.indexOf('master') > -1) {
 		getToken(path, res, doRawgit);
-	} else if(path.indexOf("/") > -1 || path.indexOf('index.html') > -1){
+	} else if(path == "/" || path == '/index.html'){
 		fs.readFile('src/index.html', function(err, data) {
 			res.end(data);
 		});	

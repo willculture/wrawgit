@@ -2,19 +2,23 @@ var http = require('http');
 var https = require('https');
 var murl = require('url');
 var fs = require('fs');
-var cheerio = require('cheerio'); //这个模块是用来讲Html字符串转换为DOM对象， 模仿了jQuery
+var cheerio = require('cheerio'); // 这个模块是用来讲Html字符串转换为DOM对象， 模仿了jQuery
 
-var token = undefined; //这里确定好一个token
+var token = undefined; // 这里确定好一个token
 
 /**
  * 获取最新得git头， 来获取最新得提交代码
- * @param path {String} 请求链接路径
- * @param res {response} 响应对象
- * @param callback {Function} 回调函数
+ * 
+ * @param path
+ *            {String} 请求链接路径
+ * @param res
+ *            {response} 响应对象
+ * @param callback
+ *            {Function} 回调函数
  */
 function getToken(path, res, callback) {
 	var project_path = path.slice(0, path.indexOf("/master"));
-	//首先要获取最新得tag
+	// 首先要获取最新得tag
 	https.get({
 		hostname : "github.com",
 		path : project_path + "/commits/master"
@@ -25,11 +29,14 @@ function getToken(path, res, callback) {
 		});
 
 		tagres.on("end", function() {
-			//获取git head;
+			// 获取git head;
 			var $ = cheerio.load(result);
 			var href = $('a.js-permalink-shortcut').attr('href');
-			var href_arr = href.split('/');
-			token = href_arr[href_arr.length - 1]; 
+//			console.log(href)
+			if(href) {
+			   var href_arr = href.split('/'); 
+			   token = href_arr[href_arr.length - 1]; 
+		    }
 			callback(path, res);
 		});
 
@@ -38,11 +45,14 @@ function getToken(path, res, callback) {
 
 /**
  * 获取到得raw数据， 响应给客户端
- * @param path {String} 请求路径
- * @param res {response} 响应对象
+ * 
+ * @param path
+ *            {String} 请求路径
+ * @param res
+ *            {response} 响应对象
  */
 function doRawgit(path, res) {
-	console.log(path)
+	//console.log(path)
 	// 
 	https.get({
 		hostname : 'raw.githubusercontent.com',
@@ -61,11 +71,11 @@ function doRawgit(path, res) {
 		var content = "";
 		sres.on("data", function(data) {
 			res.write(data);
-		//console.log(data)
+		// console.log(data)
 		});
 
 		sres.on("end", function() {
-			//console.log("end the data")
+			// console.log("end the data")
 			res.end(content);
 		})
 	});

@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "<<<<<<< HEAD",
   "main": "app.js",
+  "engines": {
+	  "node": "~4.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+	"deploy": "gcloud app deploy"
   },
   "repository": {
     "type": "git",
